@@ -7,7 +7,7 @@ public class ConstructBoard : MonoBehaviour {
     public int paddleSize = 2, boardCubeSize = 1, boardCubeWidthAmount = 30, paddleAmountWidth = 5, paddleAmountHeight = 3;
     public GameObject leftSideParent, rightSideParent, boardParent;
     public Material leftSideMat, rightSideMat, boardMat, selected;
-    public float raiseRate = 0.5f, raiseHeight = 2;
+    public float raiseRate = 0.5f, raiseHeight = 2, boardRaiseHeight = 2f, boardRaiseRate = 0.5f;
 
     private GameObject selectedCube;
     private Material lastMaterial;
@@ -70,6 +70,11 @@ public class ConstructBoard : MonoBehaviour {
                 collider.size = new Vector3(collider.size.x, raiseHeight, collider.size.z);
                 collider.isTrigger = true;
                 collider.center = new Vector3(collider.center.x, raiseHeight/2, collider.center.z);
+
+                //add script that makes the blocks go up and down
+                RaisePiece rr = board.AddComponent<RaisePiece>();
+                rr.raiseHeight = boardRaiseHeight;
+                rr.raiseRate = boardRaiseRate;
             }
         }
     }
